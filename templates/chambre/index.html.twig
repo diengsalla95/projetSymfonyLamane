@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChambreController!{% endblock %}
+
+{% block body %}
+<div class="cadre">
+    <table class="table table-bordered table-dark over">
+        <tr>
+            <th>Numero chambre</th>
+            <th>Type chambre</th>
+            <th>batiment</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for chambre in chambres  %}
+        <tr>
+            <td>{{chambre.numChambre}}</td>
+            <td>{{chambre.typeChambre}} </td>
+            <td>{{chambre.batiment.nomBatiment}} </td>
+            <td ><a href="{{ path('chambre_edit', {'id': chambre.id}) }}"><button class="btn btn-success">edit</button></a></td>
+            <td><a href="{{ path('chambre_delete', {'id': chambre.id}) }}" onclick="return confirm('Voulez vous supprimer ?');"><button class="btn btn-danger">delet</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>      
+{% endblock %}

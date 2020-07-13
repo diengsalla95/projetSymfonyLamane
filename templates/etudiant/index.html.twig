@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EtudiantController!{% endblock %}
+
+{% block body %}
+<div class="cadre">
+    <table class="table table-bordered table-dark over text-center">
+        <tr>
+            <th>Matricule</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>date Naiss</th>
+            <th>Boursier</th>
+            <th>Montant</th>
+            <th>Adresse</th>
+            <th>Chambre</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for etudiant in etudiants  %}
+        <tr>
+            <td>{{etudiant.matricule}}</td>
+            <td>{{etudiant.prenom}}</td>
+            <td>{{etudiant.nom}}</td>
+            <td>{{etudiant.email}}</td>
+            <td>{{etudiant.dateNaissAt | date("m/d/Y")}}</td>
+            <td>{{etudiant.boursier}}</td>
+            <td>{{etudiant.montant}}</td>
+            <td>{{etudiant.adresse}}</td>
+            <td></td>
+            <td ><a href="{{ path('etudiant_edit', {'id': etudiant.id}) }}"><button class="btn btn-success">edit</button></a></td>
+            <td><a href="{{ path('etudiant_delete', {'id': etudiant.id}) }}" onclick="return confirm('Voulez vous supprimer ?');"><button class="btn btn-danger">delet</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>      
+{% endblock %}
